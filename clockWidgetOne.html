@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clock Widget One</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+  }
+  .clock {
+    text-align: center;
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  .time {
+    font-size: 48px;
+    margin: 10px 0;
+  }
+  .date {
+    font-size: 24px;
+    color: #555;
+  }
+</style>
+</head>
+<body>
+
+<div class="clock">
+  <div id="time" class="time"></div>
+  <div id="date" class="date"></div>
+</div>
+
+<script>
+function updateTime() {
+  const now = new Date();
+  const hours = now.getHours().toString().padStart(2, '0');
+  const minutes = now.getMinutes().toString().padStart(2, '0');
+  const ampm = hours >= 12 ? 'PM' : 'AM';
+  const timeStr = hours + ':' + minutes + ' ' + ampm;
+  const dateStr = now.toLocaleDateString('en-US', { weekday: 'long', day: 'numeric', month: 'long' });
+  
+  document.getElementById('time').textContent = timeStr;
+  document.getElementById('date').textContent = dateStr;
+}
+
+setInterval(updateTime, 1000);
+updateTime(); // initial call to display time immediately
+</script>
+
+</body>
+</html>
